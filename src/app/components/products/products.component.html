@@ -1,0 +1,33 @@
+<section class="products">
+    <h3 class="scroll-animate">Quality Products</h3>
+    <p class="scroll-animate">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.
+    </p>
+    <div class="clients"></div>
+  </section>
+  <div class="clients-gallery">
+    <div class="client-item client-left">
+      <img [src]="leftImage.image" [alt]="leftImage.description" loading="lazy" />
+    </div>
+    <div
+      class="client-item client-center"
+      (mousedown)="onMouseDown($event)"
+      (touchstart)="onTouchStart($event)"
+      [style.transform]="transform"
+    >
+      <img [src]="currentImage.image" [alt]="currentImage.description" loading="lazy" />
+      <div class="drag-label">Drag</div>
+    </div>
+    <div class="client-item client-right">
+      <img [src]="rightImage.image" [alt]="rightImage.description" loading="lazy" />
+    </div>
+  </div>
+  
+  <div class="client-details">
+    <h2>{{ currentImage.title }}</h2>
+    <p>{{ currentImage.description }}</p>
+  </div>
+  

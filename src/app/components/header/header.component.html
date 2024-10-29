@@ -1,0 +1,28 @@
+<header class="header">
+    <span class="menu-large-screen">
+      <nav>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Make Enquiry</a></li>
+        </ul>
+      </nav></span
+    >
+    <button class="contact-button">Contact us ➔</button>
+    <span class="menu-small-screen-icon" (click)="showNavigationItems()">☰
+      <span
+        [style.display]="navigationItemsFlag ? 'block' : 'none'"
+        class="mobile-nav-menu"
+      >
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Make Enquiry</a></li>
+        </ul>
+      </span></span>
+  </header>
+  
