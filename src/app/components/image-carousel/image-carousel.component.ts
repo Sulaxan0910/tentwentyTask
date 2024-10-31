@@ -90,11 +90,10 @@ export class ImageCarouselComponent {
       this.currentImage = this.images[++this.currentImageIndex % 8];
       this.rotateimageBasedonDrag(0, startPointEndPontDiff);
     } else {
-      console.log(this.currentImageIndex);
-      if (this.currentImageIndex == 0) {
+      if (this.currentImageIndex < 1) {
         this.currentImageIndex = 7;
         this.currentImage = this.images[this.currentImageIndex];
-      } else this.currentImage = this.images[this.currentImageIndex];
+      } else this.currentImage = this.images[--this.currentImageIndex];
       this.rotateimageBasedonDrag(1, startPointEndPontDiff);
     }
   }
