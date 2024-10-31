@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { DragScrollComponent, DragScrollItemDirective } from 'ngx-drag-scroll';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
@@ -164,7 +166,7 @@ export class ProductsComponent implements OnInit {
       const deltaY = clientY - this.initialY;
 
       // Update the transform property to move the element
-      this.transform = `translate(${deltaX}px, ${deltaY}px)`;
+      this.transform = `translateX(${deltaX}px)`;
     }
   }
   onEnd(
@@ -215,6 +217,7 @@ export class ProductsComponent implements OnInit {
 
         this.initialX = this.initialX;
       } else if (clientX > this.initialX) {
+        this.rotateVal = `${++this.i * 45}deg`;
         this.rightImage = this.slides[Math.abs(this.dragSliderImageIndex) % 3];
         this.leftImage =
           this.slides[Math.abs(this.dragSliderImageIndex + 1) % 3];
@@ -224,6 +227,7 @@ export class ProductsComponent implements OnInit {
           this.slides[Math.abs(this.dragSliderImageIndex) % 3];
         this.initialX = this.initialX;
       } else {
+        this.rotateVal = `-${++this.i * 45}deg`;
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', (e) =>
           this.onEnd(e, mouseMoveHandler)
@@ -238,5 +242,24 @@ export class ProductsComponent implements OnInit {
 
   resetPosition(): void {
     this.transform = 'translate(0px, 0px)'; // Reset to original position
+  }
+  circleX: number = 125;
+  circleY: number = 150;
+
+  onMouseMove(event: MouseEvent) {
+    const target = event.currentTarget as HTMLElement;
+    const { left, top } = target.getBoundingClientRect();
+
+    const circleSize = 100; // Size of the circle
+    this.circleX = event.clientX - left;
+    this.circleY = event.clientY - top;
+  }
+  rotateVal = '0deg';
+  intervalId: any;
+  i = 0;
+  setupAnimation() {
+    this.intervalId = setInterval(() => {
+      this.rotateVal = `${++this.i * 45}deg`;
+    }, 2000);
   }
 }
